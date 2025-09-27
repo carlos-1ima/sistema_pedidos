@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pedidos</title>
+</head>
+<body>
+    <h1>Pedidos</h1>
+    <ul>
+        {% for pedido in pedidos %}
+            <li>
+                {{ pedido.cliente }} - 
+                {{ pedido.data_criacao|date:"d/m/Y H:i" }} <br>
+                Proteínas: 
+                {% for p in pedido.proteinas.all %}
+                    {{ p.nome }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                <br>
+                Observação: {{ pedido.observacao }}
+            </li>
+        {% empty %}
+            <li>Nenhum pedido ainda.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'criar_pedido' %}">Novo pedido</a>
+</body>
+</html>
