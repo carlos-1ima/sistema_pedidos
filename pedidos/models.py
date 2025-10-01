@@ -15,6 +15,7 @@ class Pedido(models.Model):
     data = models.DateField(auto_now_add=True)
     forma_pagamento = models.CharField(max_length=20, choices=[('dinheiro', "Dinheiro"), ('pix', 'Pix'), ('cartao', 'Cartão')])
     entrega = models.CharField(max_length=20, choices=[('retirada', 'Retirada'), ('delivery', 'Delivery')])
+    data_criacao = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f"{self.cliente} - {self.get_tipo_refeicao_display()}"
